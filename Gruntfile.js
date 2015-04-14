@@ -9,7 +9,8 @@ module.exports = function(grunt) {
       all: {
         options: {
           urls: [
-            'http://localhost:8000/WebContent/test/index.qunit.html'
+            'http://localhost:8000/WebContent/test/index.qunit.html',
+            'http://localhost:8000/WebContent/test/index.opa5.html'
           ]
         }
       }

@@ -5,7 +5,7 @@
 		<subHeader>
 				<Bar>
 					<contentLeft>
-						<SearchField search="handleSearch" width="100%">
+						<SearchField search="handleSearch" width="100%" id="nameSearchField">
 						</SearchField>
 					</contentLeft>
 				</Bar>
@@ -38,9 +38,9 @@
 				</firstStatus>				
 			</ObjectListItem>
 		</List>
-		<footer>
+<!-- 		<footer>
 			<Bar>
 			</Bar>
-		</footer>
+		</footer> -->
 	</Page>
 </core:View>

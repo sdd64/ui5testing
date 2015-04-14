@@ -1,0 +1,66 @@
+<html>
+  <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <base href="../">   
+    <!--[if lte IE 9]><script type="text/javascript">
+         (function() {
+                var baseTag = document.getElementsByTagName('base')[0];
+                baseTag.href = baseTag.href;
+         })();
+    </script><![endif]-->
+   
+    <script id="sap-ui-bootstrap" 
+        type="text/javascript"
+        src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            data-sap-ui-libs="sap.m"
+        data-sap-ui-theme="sap_bluecrystal"
+        data-sap-ui-noConflict="true">
+    </script>
+   
+    <link rel="stylesheet" href="https://openui5.netweaver.ondemand.com/resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="resources/sap/ui/thirdparty/qunit.js"></script>
+    <script type="text/javascript" src="resources/sap/ui/qunit/qunit-junit.js"></script>
+    <script type="text/javascript" src="resources/sap/ui/qunit/QUnitUtils.js"></script>
+
+    <script type="text/javascript">
+			jQuery.sap.require("sap.ui.thirdparty.qunit");
+			jQuery.sap.require("sap.ui.test.Opa5");
+			jQuery.sap.require("sap.ui.test.opaQunit");    
+			
+      // Pfad des Modules registrieren, in dem wir eigene Entwicklungen haben
+      jQuery.sap.registerModulePath("ui5testing", "ui5testing")       
+       
+      opaTest("Sollte Bewerber filtern", function (Given, When, Then) {
+    		// Arrangements
+    		Given.iStartMyAppInAFrame("index.html");
+    		
+        When.waitFor({
+            viewName : "ui5testing.view.Master",
+            id : "nameSearchField",
+            success : function (oSearch) {
+            	oSearch.setValue("Hammond");
+            	oSearch.fireSearch({query : oSearch.getValue() });
+            },
+            errorMessage : "Konnte Suchfeld nicht finden"
+          });
+        
+        Then.waitFor({
+            viewName : "ui5testing.view.Master",
+            id : "list",
+            success : function (oList) {
+              var expectedLength = oList.getItems().length;
+              var expectedName = oList.getItems()[0].mProperties["title"];
+           
+              strictEqual(expectedLength, 1, "Genau 1 Treffer");
+              strictEqual(expectedName, "Hammond, Tatyana", "Filtert den erwarteten Treffer");
+            },
+            errorMessage : "Erwarteter Treffer nicht gefiltert"
+          });
+
+      });
+    </script>
+  </head>
+  <body>
+    <div id="qunit"></div>
+  </body>
+</html>

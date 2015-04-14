@@ -7,11 +7,6 @@ sap.ui.controller("ui5testing.view.Master", {
 	},
 	
 	handleSearch : function (evt) {
-		console.log(evt.getParameter("query"));
-		console.log(evt.mParameters);
-		
-		//evt.mParamteters = {query : "Hammond"}
-		
 		var filters = [];
 		var query = evt.getParameter("query");
 		if (query && query.length > 0) {
