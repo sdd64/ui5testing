@@ -1,0 +1,42 @@
+{"applicants": [
+    {
+      "firstname": "Aidan",
+      "lastname": "Delacruz",
+      "email": "orci.luctus@rutrumeu.edu",
+      "phone": "(038180) 754397",
+      "appliedTo": "Customer Relations, Customer Service, Legal Department",
+      "state": "New"
+    },
+    {
+      "firstname": "Tatyana",
+      "lastname": "Hammond",
+      "email": "non@varius.org",
+      "phone": "(001) 59136100",
+      "appliedTo": "Customer Relations, Quality Assurance, Media Relations",
+      "state": "Pending"
+    },
+    {
+      "firstname": "",
+      "lastname": "Larsen",
+      "email": "egestas.hendrerit.neque@pharetrautpharetra.net",
+      "phone": "(073) 02182406",
+      "appliedTo": "",
+      "state": "Rejected"
+    },
+    {
+      "firstname": "Lara",
+      "lastname": "Wilkinson",
+      "email": "massa@purusaccumsaninterdum.co.uk",
+      "phone": "(031) 51041473",
+      "appliedTo": "Human Resources",
+      "state": "Retracted"
+    },
+    {
+      "firstname": "Galvin",
+      "lastname": "Anthony",
+      "email": "ornare.In.faucibus@ultriciesligulaNullam.com",
+      "phone": "(01802) 1964296",
+      "appliedTo": "Legal Department",
+      "state": "Employed"
+    }
+    ]}
