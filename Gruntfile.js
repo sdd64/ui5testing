@@ -26,7 +26,6 @@ module.exports = function(grunt) {
     },
     qunit_junit: {
         options: {
-        	//dest: '$CIRCLE_TEST_REPORTS'
         }
     }
     

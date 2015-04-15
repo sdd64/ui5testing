@@ -1,11 +1,6 @@
 jQuery.sap.require("ui5testing.util.Formatter");
 
 sap.ui.controller("ui5testing.view.Master", {
-	
-	iAmTrue : function () {
-		return true;
-	},
-	
 	handleSearch : function (evt) {
 		var filters = [];
 		var query = evt.getParameter("query");
