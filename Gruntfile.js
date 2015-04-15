@@ -23,7 +23,13 @@ module.exports = function(grunt) {
          base: '.'
        }
      }
+    },
+    qunit_junit: {
+        options: {
+        	dest: '$CIRCLE_TEST_REPORTS'
+        }
     }
+    
   });
 
   grunt.event.on('qunit.moduleStart', function (name)  {
