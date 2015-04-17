@@ -25,8 +25,7 @@ sap.ui.jsview("ui5testing.view.Main", {
 		this.app = new sap.m.SplitApp();
 
 		// load the master page
-		var master = sap.ui
-				.xmlview("Master", "ui5testing.view.Master");
+		var master = sap.ui.xmlview("Master", "ui5testing.view.Master");
 		master.getController().nav = this.getController();
 
 		// this.app.addPage(shell, true);
@@ -34,7 +33,7 @@ sap.ui.jsview("ui5testing.view.Main", {
 
 		var empty = sap.ui.xmlview("Empty", "ui5testing.view.Empty");
 		this.app.addPage(empty, false);
-		
+
 		return this.app;
 	}
 

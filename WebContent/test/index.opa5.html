@@ -24,33 +24,47 @@
 
     <script type="text/javascript">
 			jQuery.sap.require("sap.ui.thirdparty.qunit");
+			jQuery.sap.require("sap.ui.thirdparty.qunit-reporter-junit");
 			jQuery.sap.require("sap.ui.test.Opa5");
 			jQuery.sap.require("sap.ui.test.opaQunit");    
 			
       // Pfad des Modules registrieren, in dem wir eigene Entwicklungen haben
       jQuery.sap.registerModulePath("ui5testing", "ui5testing")       
-       
-      opaTest("Suchfeld sollte Bewerber filtern", function (Given, When, Then) {
-    		// Arrangements
+      
+      // Der OPA5-Test
+      opaTest("Suchfeld sollte Bewerber nach Namen filtern", function (Given, When, Then) {
+    		// Vorbereitung
     		Given.iStartMyAppInAFrame("index.html");
     		
+    		// Aktionen
         When.waitFor({
             viewName : "ui5testing.view.Master",
             id : "nameSearchField",
             success : function (oSearch) {
-            	oSearch.setValue("Hammond");
-            	oSearch.fireSearch({query : oSearch.getValue() });
+            	// über SAPUI5 API
+            	//oSearch.setValue("Hammond");
+            	//oSearch.fireSearch({query : oSearch.getValue() });
+            	
+            	// über jQuery
+            	oSearch.$().find("input").val("Hammond");
+            	oSearch.$().find("input").trigger("search");
             },
             errorMessage : "Konnte Suchfeld nicht finden"
           });
         
+    		// Zusicherungen
         Then.waitFor({
             viewName : "ui5testing.view.Master",
             id : "list",
             success : function (oList) {
-              var expectedLength = oList.getItems().length;
-              var expectedName = oList.getItems()[0].mProperties["title"];
+            	// über SAPUI5 API
+              //var expectedLength = oList.getItems().length;
+              //var expectedName = oList.getItems()[0].mProperties["title"];
            
+              // über jQuery
+              var expectedLength = oList.$().find("li").length; 
+              var expectedName = oList.$().find("span[id*='titleText']").text();
+              
               strictEqual(expectedLength, 1, "Genau 1 Treffer");
               strictEqual(expectedName, "Hammond, Tatyana", "Filtert den erwarteten Treffer");
             },
