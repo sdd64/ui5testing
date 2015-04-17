@@ -2,6 +2,7 @@ jQuery.sap.require("ui5testing.util.Formatter");
 
 sap.ui.controller("ui5testing.view.Master", {
 	handleSearch : function (evt) {
+		console.log(evt);
 		var filters = [];
 		var query = evt.getParameter("query");
 		if (query && query.length > 0) {

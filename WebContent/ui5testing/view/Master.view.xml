@@ -4,10 +4,10 @@
 	<Page title="Bewerbungen">
 		<subHeader>
 				<Bar>
-					<contentLeft>
+					 <contentRight>
 						<SearchField search="handleSearch" width="100%" id="nameSearchField">
 						</SearchField>
-					</contentLeft>
+					</contentRight>
 				</Bar>
 		</subHeader>
 		<List items="{/applicants}"

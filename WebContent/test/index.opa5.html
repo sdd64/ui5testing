@@ -41,8 +41,13 @@
             viewName : "ui5testing.view.Master",
             id : "nameSearchField",
             success : function (oSearch) {
-            	oSearch.setValue("Hammond");
-            	oSearch.fireSearch({query : oSearch.getValue() });
+            	// über SAPUI5 API
+            	//oSearch.setValue("Hammond");
+            	//oSearch.fireSearch({query : oSearch.getValue() });
+            	
+            	// über jQuery
+            	oSearch.$().find("input").val("Hammond");
+            	oSearch.$().find("input").trigger("search");
             },
             errorMessage : "Konnte Suchfeld nicht finden"
           });
@@ -52,9 +57,14 @@
             viewName : "ui5testing.view.Master",
             id : "list",
             success : function (oList) {
-              var expectedLength = oList.getItems().length;
-              var expectedName = oList.getItems()[0].mProperties["title"];
+            	// über SAPUI5 API
+              //var expectedLength = oList.getItems().length;
+              //var expectedName = oList.getItems()[0].mProperties["title"];
            
+              // über jQuery
+              var expectedLength = oList.$().find("li").length; 
+              var expectedName = oList.$().find("span[id*='titleText']").text();
+              
               strictEqual(expectedLength, 1, "Genau 1 Treffer");
               strictEqual(expectedName, "Hammond, Tatyana", "Filtert den erwarteten Treffer");
             },
