@@ -1,0 +1,85 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons"
+	xmlns="sap.m" xmlns:form="sap.ui.layout.form" controllerName="ui5testing.view.Detail" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Bewerber" class="sapUiFioriObjectPage" showNavButton="{device>/isPhone}" navButtonPress="handleNavButtonPress" >
+		<content>
+			<ObjectHeader
+				title="{
+					  parts: [
+    					{path: 'lastname'},
+    					{path: 'firstname'}
+					  ],
+					  formatter: 'ui5testing.util.Formatter.applicantName'
+					}">
+			</ObjectHeader>
+		</content>		 
+		<IconTabBar expanded="{device>/isNoPhone}">
+			<items>
+				<IconTabFilter icon="sap-icon://calendar" 
+				  text="Termine"
+				  count="{
+					  path: 'events',
+					  formatter: 'ui5testing.util.Formatter.eventCount'
+					}">
+          <Table items="{events}">
+						<columns>
+							<Column>
+								<header>
+									<Label text="Titel" />
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text="Tag" />
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text="Uhrzeit" />
+								</header>
+							</Column>							
+							<Column>
+								<header>
+									<Label text="Raum" />
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text="Status" />
+								</header>
+							</Column>							
+						</columns>
+						<ColumnListItem type="Navigation" press="handleLineItemPress">
+							<cells>
+								<ObjectIdentifier title="{title}" />
+								<Text
+									text="{
+							           path:'startsAt',
+							           formatter:'ui5testing.util.Formatter.date'
+					       	}" />
+								<Text
+									text="{
+							           path:'time'
+					       	}" />					       	
+								<Text
+									text="{
+            							path:'location'
+						             }" />
+						             
+								<c:Label
+									icon="{
+							           path:'state',
+							           formatter:'ui5testing.util.Formatter.eventStateMapper'
+					       	}"
+								  />
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://activity-items" text="Ausschreibungen">
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://signature" text="Kommentare">
+				</IconTabFilter>								
+			</items>
+		</IconTabBar>
+	</Page>
+</core:View>

@@ -4,7 +4,36 @@
       "lastname": "Delacruz",
       "email": "orci.luctus@rutrumeu.edu",
       "phone": "(038180) 754397",
-      "appliedTo": "Customer Relations, Customer Service, Legal Department",
+      "events": [
+        {
+          "title": "Erstes Telefonat",
+          "startsAt": "2015-06-01",
+          "location": "Mein Büro", 
+          "time": "12:15",
+          "state": "done"
+        },  
+        {
+          "title": "Vorstellungsgespräch",
+          "startsAt": "2015-06-15",
+          "location": "Raum 'Garnele'", 
+          "time": "11:00",
+          "state": "canceled"
+        },
+        {
+          "title": "Vorstellungsgespräch Neu",
+          "startsAt": "2015-06-17",
+          "location": "Raum 'Flusskrebs'", 
+          "time": "10:00",
+          "state": "done"
+        },        
+        {
+          "title": "Zweites Vorstellungsgespräch",
+          "startsAt": "2015-06-28",
+          "location": "Raum 'Garnele'", 
+          "time": "15:00",
+          "state": "pending"
+        }      
+      ], 
       "state": "New"
     },
     {
@@ -12,7 +41,7 @@
       "lastname": "Hammond",
       "email": "non@varius.org",
       "phone": "(001) 59136100",
-      "appliedTo": "Customer Relations, Quality Assurance, Media Relations",
+      "appliedTo": ["Customer Relations", "Quality Assurance", "Media Relations"],
       "state": "Pending"
     },
     {
@@ -20,7 +49,7 @@
       "lastname": "Larsen",
       "email": "egestas.hendrerit.neque@pharetrautpharetra.net",
       "phone": "(073) 02182406",
-      "appliedTo": "",
+      "appliedTo": [],
       "state": "Rejected"
     },
     {
@@ -28,7 +57,7 @@
       "lastname": "Wilkinson",
       "email": "massa@purusaccumsaninterdum.co.uk",
       "phone": "(031) 51041473",
-      "appliedTo": "Human Resources",
+      "appliedTo": ["Human Resources"],
       "state": "Retracted"
     },
     {
@@ -36,7 +65,7 @@
       "lastname": "Anthony",
       "email": "ornare.In.faucibus@ultriciesligulaNullam.com",
       "phone": "(01802) 1964296",
-      "appliedTo": "Legal Department",
+      "appliedTo": ["Legal Department", "Quality Assurance"],
       "state": "Employed"
     }
     ]}

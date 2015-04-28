@@ -2,6 +2,30 @@ jQuery.sap.declare("ui5testing.Component");
 
 sap.ui.core.UIComponent.extend("ui5testing.Component", {
 
+	metadata : {
+		name : "UI5 Testing",
+		version : "1.0",
+		includes : [],
+		dependencies : {
+			libs : ["sap.m", "sap.ui.layout"],
+			components : []
+		},
+	},
+	
+	rootView : "sap.ui.demo.tdg.view.App",
+	
+	config : {
+		resourceBundle : "i18n/messageBundle.properties",
+		serviceConfig : {
+			name : "Northwind",
+			serviceUrl : "http://services.odata.org/V2/(S(sapuidemotdg))/OData/OData.svc/"
+		},
+	},
+	
+	routing : {
+		
+	},
+	
 	createContent : function() {
 
 		// create root view

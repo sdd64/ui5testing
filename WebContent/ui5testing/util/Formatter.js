@@ -1,7 +1,9 @@
 jQuery.sap.declare("ui5testing.util.Formatter");
+jQuery.sap.require("sap.ui.core.format.DateFormat");
 
 ui5testing.util.Formatter = {
 
+		
 	_stateMap : {
 	  "New" : "Warning",
 	  "Retracted" : "Error",
@@ -23,7 +25,22 @@ ui5testing.util.Formatter = {
 	  //return lastname + ", " + firstname;
 	  return [lastname, firstname].filter(Boolean).join(", ");
 	  //return firstname == "" ? lastname : lastname + ", " + firstname; 
-  }
+  },
+  
+  eventCount : function(value) {
+	  value = value || [];
+	  return value.length;
+  },
+  
+  eventStateMapper : function(value) {
+	  var eventStateMap = {
+			  "done" : "accept",
+			  "pending" : "future",
+			  "canceled" : "decline"
+	  };
+	  
+	  return "sap-icon://" + eventStateMap[value];
+  },
   
 //	_statusStateMap : {
 //		"P" : "Success",
@@ -40,14 +57,14 @@ ui5testing.util.Formatter = {
 //		return (value && map[value]) ? map[value] : "None";
 //	},
 //	
-//	date : function (value) {
-//		if (value) {
-//			var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({pattern: "dd.MM.yyyy"}); 
-//			return oDateFormat.format(new Date(value));
-//		} else {
-//			return value;
-//		}
-//	},
+	date : function (value) {
+		if (value) {
+			var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({pattern: "dd.MM.yyyy"}); 
+			return oDateFormat.format(new Date(value));
+		} else {
+			return value;
+		}
+	},
 //	
 //	quantity :  function (value) {		
 //		try {

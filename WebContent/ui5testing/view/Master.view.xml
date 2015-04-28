@@ -11,14 +11,19 @@
 				</Bar>
 		</subHeader>
 		<List items="{/applicants}"
-					id="list">
+					id="list"
+					select="handleApplicantSelect"
+					mode="{device>/listMode}">
 			<ObjectListItem title="{
 					  parts: [
     					{path: 'lastname'},
     					{path: 'firstname'}
 					  ],
 					  formatter: 'ui5testing.util.Formatter.applicantName'
-					}">
+					}"
+					type="{device>/listItemType}" 
+					press="handleApplicantPress"
+					>
 				<attributes>
 					<ObjectAttribute  text="{path: 'email'}"> 
 					</ObjectAttribute>
