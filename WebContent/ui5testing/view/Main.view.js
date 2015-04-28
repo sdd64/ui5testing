@@ -22,7 +22,7 @@ sap.ui.jsview("ui5testing.view.Main", {
 		this.setDisplayBlock(true);
 
 		// create app
-		this.app = new sap.m.SplitApp();
+		this.app = new sap.m.SplitApp("idAppControl");
 
 		// load the master page
 		var master = sap.ui.xmlview("Master", "ui5testing.view.Master");
