@@ -83,5 +83,9 @@
 				</IconTabFilter>
 			</items>
 		</IconTabBar>
+				<footer>
+			<Bar>
+			</Bar>
+		</footer>
 	</Page>
 </core:View>

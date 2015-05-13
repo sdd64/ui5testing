@@ -1,34 +1,32 @@
 <core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m" controllerName="ui5testing.view.Master" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:c="sap.ui.commons"
-	xmlns:u="sap.ui.unified">
+	xmlns="sap.m" controllerName="ui5testing.view.Master" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:c="sap.ui.commons" xmlns:u="sap.ui.unified">
 	<Page title="Bewerbungen">
 		<subHeader>
-				<Bar>
-					 <contentRight>
-						<SearchField search="handleSearch" width="100%" id="nameSearchField">
-						</SearchField>
-					</contentRight>
-				</Bar>
+			<Bar>
+				<contentRight>
+					<SearchField search="handleSearch" width="100%"
+						id="nameSearchField">
+					</SearchField>
+				</contentRight>
+			</Bar>
 		</subHeader>
-		<List items="{/applicants}"
-					id="list"
-					select="handleApplicantSelect"
-					mode="{device>/listMode}">
-			<ObjectListItem title="{
+		<List items="{/applicants}" id="list" select="handleApplicantSelect"
+			mode="{device>/listMode}">
+			<ObjectListItem
+				title="{
 					  parts: [
     					{path: 'lastname'},
     					{path: 'firstname'}
 					  ],
 					  formatter: 'ui5testing.util.Formatter.applicantName'
 					}"
-					type="{device>/listItemType}" 
-					press="handleApplicantPress"
-					>
+				type="{device>/listItemType}" press="handleApplicantPress">
 				<attributes>
-					<ObjectAttribute  text="{path: 'email'}"> 
+					<ObjectAttribute text="{path: 'email'}">
 					</ObjectAttribute>
-					<ObjectAttribute  text="{path: 'phone'}"> 
-					</ObjectAttribute>					
+					<ObjectAttribute text="{path: 'phone'}">
+					</ObjectAttribute>
 				</attributes>
 				<firstStatus>
 					<ObjectStatus
@@ -40,12 +38,12 @@
 					 			path: 'state',
 					 			formatter: 'ui5testing.util.Formatter.state' 
 					 		}" />
-				</firstStatus>				
+				</firstStatus>
 			</ObjectListItem>
 		</List>
-<!-- 		<footer>
+		<footer>
 			<Bar>
 			</Bar>
-		</footer> -->
+		</footer>
 	</Page>
 </core:View>

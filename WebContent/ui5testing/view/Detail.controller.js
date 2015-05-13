@@ -18,21 +18,14 @@ sap.ui.controller("ui5testing.view.Detail", {
 	},
 
 	_handleRouteMatched : function(evt) {
-		var args = evt.getParameter("arguments");	
 		
 		var id = evt.getParameter("arguments").id;
 		var sPath = "/applicants/" + id;
 		var model = this.getView().getModel();
 				
-		var context = new sap.ui.model.Context(model, sPath)
+		var context = new sap.ui.model.Context(model, sPath);
 		this.getView().setBindingContext(context);
 		
-		var masterViewList = sap.ui.getCore().byId("Master").byId("list");
-		var item = masterViewList.getItems()[id];
-		
-		if (item) {
-			item.setSelected(true);
-		}	 
 	},
 
 /**
@@ -42,9 +35,17 @@ sap.ui.controller("ui5testing.view.Detail", {
  * 
  * @memberOf ui5testing.view.Detail
  */
-// onBeforeRendering: function() {
-//
-// },
+ onBeforeRendering: function() {
+//		var masterViewList = sap.ui.getCore().byId("Master").byId("list");
+//		var item = masterViewList.getItems()["2"];
+//		
+//		console.log(masterViewList);
+//		console.log(item);
+//		
+//		if (item) {
+//			item.setSelected(true);
+//		}	 
+ },
 /**
  * Called when the View has been rendered (so its HTML is part of the document).
  * Post-rendering manipulations of the HTML could be done here. This hook is the
@@ -52,14 +53,17 @@ sap.ui.controller("ui5testing.view.Detail", {
  * 
  * @memberOf ui5testing.view.Detail
  */
-// onAfterRendering: function() {
+ onAfterRendering: function() {
 //		var masterViewList = sap.ui.getCore().byId("Master").byId("list");
-//		var item = masterViewList.getItems()[this.id];
+//		var item = masterViewList.getItems()["2"];
+//		
+//		console.log(masterViewList);
+//		console.log(item);
 //		
 //		if (item) {
 //			item.setSelected(true);
-//		}
-// },
+//		}	
+ },
 /**
  * Called when the Controller is destroyed. Use this one to free resources and
  * finalize activities.

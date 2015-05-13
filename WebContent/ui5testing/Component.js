@@ -8,23 +8,37 @@ sap.ui.core.UIComponent.extend("ui5testing.Component", {
 				viewType:"XML",
 				viewPath:"ui5testing.view",
 				targetControl:"idAppControl",
-				targetAggregation:"detailPages",
-				clearTarget : true
+				clearTarget : false
 			},
 			routes : [
 			          {
-			        	  pattern : "",
-			        	  name:"Master",
-			        	  view:"Master"
-			          },
-			          {
-			        	  pattern : "applicants/{id}",
-			        	  name : "Detail",
-			        	  view : "Detail"
-			          }]
+			              pattern : "",
+			              name : "Master",
+			              view : "Master",
+			              viewLevel : 0,
+			              targetAggregation : "masterPages",
+			              subroutes : [
+			                  {
+			                      pattern : "applicants/{id}",
+			                      name : "Detail",
+			                      view : "Detail",
+			                      viewLevel : 1,
+			                      targetAggregation : "detailPages",
+
+			                  },
+			                  {
+			                      pattern : "{all*}",
+			                      name : "Empty",
+			                      view : "Empty",
+			                      targetAggregation : "detailPages"
+			                  }
+			              ]
+			          }
+			      ]
 		}
 	}
 });
+
 
 ui5testing.Component.prototype.init = function(){
 	jQuery.sap.require("sap.ui.core.routing.History");

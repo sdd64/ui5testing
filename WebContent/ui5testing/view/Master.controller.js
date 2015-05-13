@@ -8,11 +8,6 @@ sap.ui.controller("ui5testing.view.Master", {
         var path = context.getPath();
         
         oHashChanger.setHash( path.slice(1) );
-
-        console.log(context);
-        
-       // this.nav.to("Detail", context);
-        
 	},
 	
 	handleSearch : function (evt) {
