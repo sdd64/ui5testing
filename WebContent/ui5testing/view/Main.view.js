@@ -33,7 +33,7 @@ sap.ui.jsview("ui5testing.view.Main", {
 
 		var empty = sap.ui.xmlview("Empty", "ui5testing.view.Empty");
 		this.app.addPage(empty, false);
-
+		
 		return this.app;
 	}
 

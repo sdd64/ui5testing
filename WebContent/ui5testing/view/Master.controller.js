@@ -2,9 +2,17 @@ jQuery.sap.require("ui5testing.util.Formatter");
 
 sap.ui.controller("ui5testing.view.Master", {
 	handleApplicantSelect : function (evt) {
-		var context = evt.getParameter("listItem").getBindingContext();
-	    console.log(context);	
-	    this.nav.to("Detail", context);
+		
+        var context  = evt.getParameter("listItem").getBindingContext();
+        var oHashChanger = sap.ui.core.routing.HashChanger.getInstance();
+        var path = context.getPath();
+        
+        oHashChanger.setHash( path.slice(1) );
+
+        console.log(context);
+        
+       // this.nav.to("Detail", context);
+        
 	},
 	
 	handleSearch : function (evt) {
@@ -21,9 +29,10 @@ sap.ui.controller("ui5testing.view.Master", {
 	},
 
 	
+	// Handy Modus!
 	handleApplicantPress : function (evt){
-		var context = evt.getSource().getBindingContext();
-		this.nav.to("Detail", context);
+		var context = evt.getSource().getBindingContext();	
+	    this.nav.to("Detail", context);
 	},
 
 /**
@@ -32,6 +41,11 @@ sap.ui.controller("ui5testing.view.Master", {
 * @memberOf ui5testing.Master
 */
 	onInit: function() {
+		//this.getRouter().attachRoutePatternMatched(this.onRouteMatched, this);
+	},
+	
+	onRouteMatched: function(evt){
+	
 	},
 
 /**
