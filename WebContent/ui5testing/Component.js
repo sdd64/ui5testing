@@ -13,22 +13,21 @@ sap.ui.core.UIComponent.extend("ui5testing.Component", {
 			routes : [
 			          {
 			              pattern : "",
-			              name : "Master",
+			              name : "index",
 			              view : "Master",
 			              viewLevel : 0,
 			              targetAggregation : "masterPages",
 			              subroutes : [
 			                  {
 			                      pattern : "applicants/{id}",
-			                      name : "Detail",
+			                      name : "applicants",
 			                      view : "Detail",
-			                      viewLevel : 1,
 			                      targetAggregation : "detailPages",
 
 			                  },
 			                  {
 			                      pattern : "{all*}",
-			                      name : "Empty",
+			                      name : "empty",
 			                      view : "Empty",
 			                      targetAggregation : "detailPages"
 			                  }

@@ -12,9 +12,24 @@
 					  formatter: 'ui5testing.util.Formatter.applicantName'
 					}">
 			<attributes>
+			
 				<ObjectAttribute text="{email}" />
 				<ObjectAttribute text="{phone}" />
 			</attributes>
+			<firstStatus>
+					<ObjectStatus
+						text="{
+					 		  path: 'state',
+					 		  formatter: 'ui5testing.util.Formatter.stateText'
+					 		}"
+						state="{
+					 			path: 'state',
+					 			formatter: 'ui5testing.util.Formatter.state' 
+					 		}" />
+			</firstStatus>
+			<secondStatus>
+				<ObjectStatus text="Bewerber-ID {id}"></ObjectStatus>
+			</secondStatus>
 		</ObjectHeader>
 
 		<IconTabBar expanded="{device>/isNoPhone}">

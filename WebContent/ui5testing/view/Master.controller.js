@@ -1,19 +1,15 @@
 jQuery.sap.require("ui5testing.util.Formatter");
 
 sap.ui.controller("ui5testing.view.Master", {
-	handleApplicantSelect : function (evt) {        
-		var oHashChanger = sap.ui.core.routing.HashChanger.getInstance();
+	handleApplicantSelect : function (evt) {    
+		
+		var router = sap.ui.core.UIComponent.getRouterFor(this);
         var context  = evt.getParameter("listItem").getBindingContext();
         var path = context.getPath();
         var model = this.getView().getModel();
         var item =  model.getProperty(path);
-        oHashChanger.setHash("applicants/" + item.id);
         
-//        var context  = evt.getParameter("listItem").getBindingContext();
-//        var oHashChanger = sap.ui.core.routing.HashChanger.getInstance();
-//        var path = context.getPath();
-//        
-//        oHashChanger.setHash( path.slice(1) );
+        router.navTo("applicants", { id : item.id });  
 	},
 	
 	handleSearch : function (evt) {
@@ -35,19 +31,17 @@ sap.ui.controller("ui5testing.view.Master", {
 		var context = evt.getSource().getBindingContext();	
 	    this.nav.to("Detail", context);
 	},
-
 /**
 * Called when a controller is instantiated and its View controls (if available) are already created.
 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 * @memberOf ui5testing.Master
 */
-	onInit: function() {
-		//this.getRouter().attachRoutePatternMatched(this.onRouteMatched, this);
-	},
-	
-	onRouteMatched: function(evt){
-	
-	},
+//	onInit: function() {
+//	},
+//	
+//	onRouteMatched: function(evt){
+//	
+//	},
 
 /**
 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered

@@ -52,16 +52,8 @@ sap.ui.controller("ui5testing.view.Detail", {
 			var sPath = "/applicants/" + pathId;
 
 			var context = new sap.ui.model.Context(model, sPath)
-			
-			
-			var list = sap.ui.getCore().byId("Master").byId("list");
-			var item = list.getItems()[pathId];
-			item.setSelected(true);
-			console.log(pathId);
-			console.log("le item");
-			console.log(item);
-			
 			this.getView().setBindingContext(context);
+			
 		}
 	},
 
@@ -83,6 +75,9 @@ sap.ui.controller("ui5testing.view.Detail", {
 	 * @memberOf ui5testing.view.Detail
 	 */
 	onAfterRendering : function() {
+		var list = sap.ui.getCore().byId("Master").byId("list");
+		var item = list.getItems()["3"];
+		if (item) item.setSelected(true);
 	},
 /**
  * Called when the Controller is destroyed. Use this one to free resources and
