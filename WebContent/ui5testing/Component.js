@@ -59,6 +59,7 @@ ui5testing.Component.prototype.destroy = function(){
 };
 
 ui5testing.Component.prototype.createContent = function(){
+	
 	// create root view
 	var oView = sap.ui.view({
 		id : "app",
@@ -82,9 +83,10 @@ ui5testing.Component.prototype.createContent = function(){
 	oView.setModel(i18nModel, "i18n");
 
 	// Using a local model for offline development
-	var oModel = new sap.ui.model.json.JSONModel(
-			"model/mock_applicants.json");
+	var oModel = new sap.ui.model.json.JSONModel("model/mock_applicants.json");
 	oView.setModel(oModel);
+	
+	console.log("model set");
 
 	// set device model
 	var deviceModel = new sap.ui.model.json.JSONModel(

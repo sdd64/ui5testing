@@ -1,13 +1,19 @@
 jQuery.sap.require("ui5testing.util.Formatter");
 
 sap.ui.controller("ui5testing.view.Master", {
-	handleApplicantSelect : function (evt) {
-		
+	handleApplicantSelect : function (evt) {        
+		var oHashChanger = sap.ui.core.routing.HashChanger.getInstance();
         var context  = evt.getParameter("listItem").getBindingContext();
-        var oHashChanger = sap.ui.core.routing.HashChanger.getInstance();
         var path = context.getPath();
+        var model = this.getView().getModel();
+        var item =  model.getProperty(path);
+        oHashChanger.setHash("applicants/" + item.id);
         
-        oHashChanger.setHash( path.slice(1) );
+//        var context  = evt.getParameter("listItem").getBindingContext();
+//        var oHashChanger = sap.ui.core.routing.HashChanger.getInstance();
+//        var path = context.getPath();
+//        
+//        oHashChanger.setHash( path.slice(1) );
 	},
 	
 	handleSearch : function (evt) {
