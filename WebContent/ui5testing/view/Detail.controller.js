@@ -1,9 +1,4 @@
 sap.ui.controller("ui5testing.view.Detail", {
-
-	handleNavButtonPress : function(evt) {
-		this.nav.back("Master");
-	},
-
 	/**
 	 * Called when a controller is instantiated and its View controls (if
 	 * available) are already created. Can be used to modify the View before it
@@ -14,10 +9,21 @@ sap.ui.controller("ui5testing.view.Detail", {
 	 */
 	onInit : function() {
 		console.log("detail init");
+		
 		var that = this;
+		
+		// Lädt den Router für diese View
 		this.router = sap.ui.core.UIComponent.getRouterFor(this);
-		this.router.attachRoutePatternMatched(this._handleRouteMatched, this);
+		// Führt die Funktion handleRouteMatched() aus, wenn definierte 
+		// Routeing-Muster angesteuert wurden 
+		this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
 
+		// Die folgenden Schritte sind nötig, wenn die Anwendung initial über die gemachte Route
+		// gestartet werden soll.
+		// Problem: Die Route wird schneller abgearbeitet, wie die Daten im Model geladen werden können.
+		// Mittels attachRequestCompleted() wird der View erst dann der Inhalt zugewiesen, wenn die Daten
+		// garantiert geladen wurden. Anstatt über handleRouteMatched() wird die Übergebene ID direkt aus dem
+		// Hash der URL gelesen und verarbeitet. (Feedback zur Verbesserung immer willkommen)
 		this.model = sap.ui.getCore().byId("app").getModel();
 		this.model.attachRequestCompleted(function(oEvent) {
 			console.log("attachRequestCompleted");
@@ -25,44 +31,74 @@ sap.ui.controller("ui5testing.view.Detail", {
 			var hash = oHashChanger.getHash();
 			var objectId = hash.split("/")[1];
 			
-			that._setViewContext(objectId);
+			that.setViewContext(objectId);
 		});
 	},
 
-	_handleRouteMatched : function(evt) {
-		console.log("_handleRouteMatched");
-		var objectId = evt.getParameter("arguments").id;
-		this._setViewContext(objectId);
+	// Behandelt alle Routen der Detail-View. Wir brauchen aber nur Aktionen für die
+	// Route namens "applicants"
+	handleRouteMatched : function(evt) {
+		console.log("handleRouteMatched");
+		var routeName = evt.getParameter("name");
+		
+		if (routeName == "applicants") {
+			var objectId = evt.getParameter("arguments").id;
+			this.setViewContext(objectId);
+		}
 	},
 
-	_setViewContext : function(objectId) {
-		console.log("_setViewContext");
-		var model = sap.ui.getCore().byId("app").getModel();
-		var data = model.getData()["applicants"];
+	// Setzt den Context der View anhand des aus der URL ermittelten Models
+	// Anhand der ID wird aus dem JSON-Datensatz der entsrechende Datenpfad ausgelesen
+	// Anhand des Pfades wird ein Context erstellt und dieser Context an die View gebunden
+	
+	setViewContext : function(objectId) {
+		console.log("setViewContext");
+		
+		// Legt die Model-Daten unter "applicants" in ein Array
+		var data = this.model.getData()["applicants"];
 
 		var pathId;
+		
+		// Absicherung, falls keine Daten vorhanden sind
 		if (data) {
+			// Schleife durch die JSON-Datensätze
+			// Hat einer dieser Datensätze die übergebene ID, 
+			// dann entspricht i den gesuchten Pfad im Model  
 			for (var i = 0; data.length; i++) {
 				if (objectId == data[i].id) {
 					pathId = i;
 					break;
 				}
 			}
-
+			
+			// Baut Pfad zusammen
 			var sPath = "/applicants/" + pathId;
 
-			var context = new sap.ui.model.Context(model, sPath)
+			// Erstellung des Context anhand dem Model und Pfad
+			var context = new sap.ui.model.Context(this.model, sPath)
 			this.getView().setBindingContext(context);
 
-			var eventBus = sap.ui.getCore().getEventBus();
-
-			eventBus.publish("detailToMaster", "detailApplicantCalled", 
-			    {
-			        sPathId: pathId
-			    }
-			);
-			
+			// Abschließend Event-Funktion auslösen, mittels der der Eintrag in der
+			// Master-Liste hervorgeben werden soll.
+			this.raiseDetailApplicantCalled(pathId);
 		}
+	},
+	
+	// Sendet an den Master-Controller das Event, dass ein Datensatz mittels
+	// Routing ausgewählt wurde. Übergibt dabei den Pfad zum Context als Parameter
+	raiseDetailApplicantCalled : function(pathId){
+		var eventBus = sap.ui.getCore().getEventBus();
+
+		eventBus.publish("detailToMaster", "detailApplicantCalled", 
+		    {
+		        sPathId: pathId
+		    }
+		);
+	},
+	
+	// Mobile Rücknavigation mittels Index-Route
+	handleNavButtonPress : function(evt) {
+		this.router.navTo("index");
 	},
 
 	/**
