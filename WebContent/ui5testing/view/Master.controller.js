@@ -31,18 +31,26 @@ sap.ui.controller("ui5testing.view.Master", {
 		var context = evt.getSource().getBindingContext();	
 	    this.nav.to("Detail", context);
 	},
+	
+	
 /**
 * Called when a controller is instantiated and its View controls (if available) are already created.
 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 * @memberOf ui5testing.Master
 */
-//	onInit: function() {
-//	},
-//	
-//	onRouteMatched: function(evt){
-//	
-//	},
-
+	onInit: function() {
+		var eventBus = sap.ui.getCore().getEventBus();
+		eventBus.subscribe("detailToMaster", "detailApplicantCalled", this.handleDetailApplicantCalled, this);
+	},
+	
+	handleDetailApplicantCalled : function(channel, event, data){
+		console.log("handleDetailApplicantCalled");
+		
+		var list = this.getView().byId("list");
+		var sPathId = data["sPathId"];
+		var item = list.getItems()[sPathId];
+		item.setSelected(true);
+	},
 /**
 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 * (NOT before the first rendering! onInit() is used for that one!).

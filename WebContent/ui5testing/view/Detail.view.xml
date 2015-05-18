@@ -28,7 +28,7 @@
 					 		}" />
 			</firstStatus>
 			<secondStatus>
-				<ObjectStatus text="Bewerber-ID {id}"></ObjectStatus>
+				<ObjectStatus title="Bewerber-ID" text="{id}"></ObjectStatus>
 			</secondStatus>
 		</ObjectHeader>
 

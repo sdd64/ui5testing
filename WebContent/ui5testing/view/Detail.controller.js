@@ -53,6 +53,14 @@ sap.ui.controller("ui5testing.view.Detail", {
 
 			var context = new sap.ui.model.Context(model, sPath)
 			this.getView().setBindingContext(context);
+
+			var eventBus = sap.ui.getCore().getEventBus();
+
+			eventBus.publish("detailToMaster", "detailApplicantCalled", 
+			    {
+			        sPathId: pathId
+			    }
+			);
 			
 		}
 	},
@@ -64,9 +72,9 @@ sap.ui.controller("ui5testing.view.Detail", {
 	 * 
 	 * @memberOf ui5testing.view.Detail
 	 */
-	onBeforeRendering : function() {
-		
-	},
+//	onBeforeRendering : function() {
+//		
+//	},
 	/**
 	 * Called when the View has been rendered (so its HTML is part of the
 	 * document). Post-rendering manipulations of the HTML could be done here.
@@ -74,11 +82,8 @@ sap.ui.controller("ui5testing.view.Detail", {
 	 * 
 	 * @memberOf ui5testing.view.Detail
 	 */
-	onAfterRendering : function() {
-		var list = sap.ui.getCore().byId("Master").byId("list");
-		var item = list.getItems()["3"];
-		if (item) item.setSelected(true);
-	},
+//	onAfterRendering : function() {
+//	},
 /**
  * Called when the Controller is destroyed. Use this one to free resources and
  * finalize activities.
